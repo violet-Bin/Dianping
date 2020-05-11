@@ -11,3 +11,8 @@
 **/*.iml
 *.iml
 *.log
+mvnw
+mvnw.cmd
+**/HELP.md
+**/.mvn
+**/.mvn/**
