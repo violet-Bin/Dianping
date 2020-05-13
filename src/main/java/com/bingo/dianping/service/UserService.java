@@ -1,6 +1,9 @@
 package com.bingo.dianping.service;
 
+import com.bingo.dianping.common.BusinessException;
 import com.bingo.dianping.model.UserModel;
+
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @Author: jiangjiabin
@@ -10,5 +13,7 @@ import com.bingo.dianping.model.UserModel;
 public interface UserService {
 
     UserModel getUser(Integer id);
+
+    UserModel register(UserModel registerUser) throws BusinessException, NoSuchAlgorithmException;
 
 }
