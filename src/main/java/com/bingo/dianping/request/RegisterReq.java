@@ -3,6 +3,7 @@ package com.bingo.dianping.request;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @Author: jiangjiabin
@@ -21,7 +22,7 @@ public class RegisterReq {
     @NotBlank(message = "昵称不能为空")
     private String nickName;
 
-    @NotBlank(message = "性别不能为空")
+    @NotNull(message = "性别不能为空")
     private Integer gender;
 
 }

@@ -56,7 +56,7 @@ public class UserController {
 
     @RequestMapping("/register")
     @ResponseBody
-    public Result getUser(@Valid @RequestBody RegisterReq registerReq, BindingResult bindingResult) throws BusinessException, NoSuchAlgorithmException {
+    public Result register(@Valid @RequestBody RegisterReq registerReq, BindingResult bindingResult) throws BusinessException, NoSuchAlgorithmException {
         if (bindingResult.hasErrors()) {
             throw new BusinessException(ErrorCodeEnum.PARAMETER_VALIDATE_ERROR, CommonUtils.processErrorString(bindingResult));
         }

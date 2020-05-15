@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 /**
  * @Author: jiangjiabin
@@ -32,6 +33,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserModel register(UserModel registerUser) throws BusinessException, NoSuchAlgorithmException {
+        registerUser.setCreated(new Date());
+        registerUser.setModified(new Date());
         registerUser.setPassword(MD5Utils.encodeByMD5(registerUser.getPassword()));
         try {
             userModelMapper.insertSelective(registerUser);

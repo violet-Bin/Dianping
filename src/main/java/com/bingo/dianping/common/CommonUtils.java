@@ -16,7 +16,7 @@ public class CommonUtils {
         }
         StringBuilder sb = new StringBuilder();
         for (FieldError fieldError : bindingResult.getFieldErrors()) {
-            sb.append(fieldError + ", ");
+            sb.append(fieldError.getDefaultMessage() + ", ");
         }
         sb.substring(0, sb.length() - 1);
         return sb.toString();
