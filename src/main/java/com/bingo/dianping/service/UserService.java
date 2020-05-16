@@ -16,4 +16,6 @@ public interface UserService {
 
     UserModel register(UserModel registerUser) throws BusinessException, NoSuchAlgorithmException;
 
+    UserModel login(String telphone, String password) throws NoSuchAlgorithmException, BusinessException;
+
 }

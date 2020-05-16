@@ -16,6 +16,7 @@ public enum ErrorCodeEnum {
 
     //用户服务相关的错误类型
     REGISTER_DUP_FAIL(20001, "用户已存在"),
+    LOGIN_FAIL(20002, "手机号或密码错误"),
 
 
     ;

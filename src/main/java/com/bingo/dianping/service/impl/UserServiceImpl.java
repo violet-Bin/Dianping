@@ -11,6 +11,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
@@ -22,7 +23,7 @@ import java.util.Date;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Resource
     private UserModelMapper userModelMapper;
 
     @Override
@@ -45,6 +46,14 @@ public class UserServiceImpl implements UserService {
         return getUser(registerUser.getId());
     }
 
+    @Override
+    public UserModel login(String telphone, String password) throws NoSuchAlgorithmException, BusinessException {
+        UserModel userModel = userModelMapper.selectByTelphoneAndPassword(telphone, MD5Utils.encodeByMD5(password));
+        if (userModel == null) {
+            throw new BusinessException(ErrorCodeEnum.LOGIN_FAIL);
+        }
+        return userModel;
+    }
 
 
 }
