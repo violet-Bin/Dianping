@@ -77433,7 +77433,7 @@ window.pdfMake = window.pdfMake || {}; window.pdfMake.vfs = {"LICENSE.txt":"DQog
 				cell.html( column.sTitle );
 			}
 	
-			_fnRenderer( oSettings, 'header' )(
+			_fnRenderer( oSettings, 'templates.header' )(
 				oSettings, cell, column, classes
 			);
 		}
@@ -77692,7 +77692,7 @@ window.pdfMake = window.pdfMake || {}; window.pdfMake.vfs = {"LICENSE.txt":"DQog
 		}
 	
 		/* Header and footer callbacks */
-		_fnCallbackFire( oSettings, 'aoHeaderCallback', 'header', [ $(oSettings.nTHead).children('tr')[0],
+		_fnCallbackFire( oSettings, 'aoHeaderCallback', 'templates.header', [ $(oSettings.nTHead).children('tr')[0],
 			_fnGetDataMaster( oSettings ), iDisplayStart, iDisplayEnd, aiDisplay ] );
 	
 		_fnCallbackFire( oSettings, 'aoFooterCallback', 'footer', [ $(oSettings.nTFoot).children('tr')[0],
@@ -98393,7 +98393,7 @@ $.extend( FixedHeader.prototype, {
 		this.s.enable = enable;
 
 		if ( this.c.header ) {
-			this._modeChange( 'in-place', 'header', true );
+			this._modeChange( 'in-place', 'templates.header', true );
 		}
 
 		if ( this.c.footer && this.dom.tfoot.length ) {
@@ -98500,7 +98500,7 @@ $.extend( FixedHeader.prototype, {
 	{
 		var dt = this.s.dt;
 		var itemDom = this.dom[ item ];
-		var itemElement = item === 'header' ?
+		var itemElement = item === 'templates.header' ?
 			this.dom.thead :
 			this.dom.tfoot;
 
@@ -98568,7 +98568,7 @@ $.extend( FixedHeader.prototype, {
 	_unsize: function ( item ) {
 		var el = this.dom[ item ].floating;
 
-		if ( el && (item === 'footer' || (item === 'header' && ! this.s.autoWidth)) ) {
+		if ( el && (item === 'footer' || (item === 'templates.header' && ! this.s.autoWidth)) ) {
 			$('th, td', el).css( 'width', '' );
 		}
 	},
@@ -98624,7 +98624,7 @@ $.extend( FixedHeader.prototype, {
 
 			this._unsize( item );
 
-			itemDom.host.append( item === 'header' ?
+			itemDom.host.append( item === 'templates.header' ?
 				this.dom.thead :
 				this.dom.tfoot
 			);
@@ -98641,7 +98641,7 @@ $.extend( FixedHeader.prototype, {
 
 			itemDom.floating
 				.addClass( 'fixedHeader-floating' )
-				.css( item === 'header' ? 'top' : 'bottom', this.c[item+'Offset'] )
+				.css( item === 'templates.header' ? 'top' : 'bottom', this.c[item+'Offset'] )
 				.css( 'left', position.left+'px' )
 				.css( 'width', position.width+'px' );
 
@@ -98747,10 +98747,10 @@ $.extend( FixedHeader.prototype, {
 			}
 
 			if ( forceChange || headerMode !== this.s.headerMode ) {
-				this._modeChange( headerMode, 'header', forceChange );
+				this._modeChange( headerMode, 'templates.header', forceChange );
 			}
 
-			this._horizontal( 'header', windowLeft );
+			this._horizontal( 'templates.header', windowLeft );
 		}
 
 		if ( this.c.footer && this.dom.tfoot.length ) {
@@ -98850,7 +98850,7 @@ DataTable.Api.register( 'fixedHeader.disable()', function ( ) {
 	} );
 } );
 
-$.each( ['header', 'footer'], function ( i, el ) {
+$.each( ['templates.header', 'footer'], function (i, el ) {
 	DataTable.Api.register( 'fixedHeader.'+el+'Offset()', function ( offset ) {
 		var ctx = this.context;
 

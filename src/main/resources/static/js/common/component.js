@@ -153,7 +153,7 @@ jQuery.extend({
 			 if(tagName == "p"){
 			 	//本身就是段落，不替换
 			 }else if(tagName=="aside" || tagName=="blockquote" || tagName == "ul" || tagName == "ol" || tagName =="dl" 
-				 || tagName == "div" || tagName=="section" || tagName=="article" || tagName=="header" || tagName=="footer"
+				 || tagName == "div" || tagName=="section" || tagName=="article" || tagName=="templates.header" || tagName=="footer"
 				 || tagName == "div" || tagName =="form" || tagName == "head" || tagName == "nav"){
 	 				//容器类
 				 	if(tagName == "div" && (node.hasClass("drimgPackage") ||  node.hasClass("drimgCaption") )){

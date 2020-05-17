@@ -20,7 +20,7 @@ public class RegisterReq {
     private String password;
 
     @NotBlank(message = "昵称不能为空")
-    @Pattern(regexp = "^[a-zA-Z]\\w{5,17}$", message = "昵称只能以字母开头，长度在6-18之间，只能包含字符、数字和下划线。")
+    @Pattern(regexp = "^[a-zA-Z0-9\\u4E00-\\u9FA5]{6,16}$", message = "昵称只能包含数字、字母、汉字且长度在6-16之间")
     private String nickName;
 
     @NotNull(message = "性别不能为空")

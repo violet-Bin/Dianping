@@ -1,14 +1,16 @@
 package com.bingo.dianping.controller.admin;
 
 import com.bingo.dianping.common.BusinessException;
+import com.bingo.dianping.common.CommonError;
 import com.bingo.dianping.common.ErrorCodeEnum;
+import com.bingo.dianping.common.Result;
+import com.bingo.dianping.common.interceptor.AdminPermission;
 import com.bingo.dianping.common.utils.MD5Utils;
+import com.bingo.dianping.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -24,7 +26,7 @@ import java.security.NoSuchAlgorithmException;
 @RequestMapping("/admin/admin")
 public class AdminController {
 
-    private static final String CURRENT_USER_SESSION = "currentUserSession";
+    public static final String CURRENT_USER_SESSION = "currentUserSession";
 
     @Value("${admin.email}")
     private String email;
@@ -35,9 +37,16 @@ public class AdminController {
     @Resource
     private HttpServletRequest httpServletRequest;
 
+    @Resource
+    private UserService userService;
+
     @RequestMapping("/index")
+    @AdminPermission
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("/admin/admin/index.html");
+        modelAndView.addObject("userCount", userService.getCountUser());
+        modelAndView.addObject("CONTROLLER_NAME", "admin");
+        modelAndView.addObject("ACTION_NAME", "index");
         return modelAndView;
     }
 
@@ -61,5 +70,6 @@ public class AdminController {
             throw new BusinessException(ErrorCodeEnum.PARAMETER_VALIDATE_ERROR, "用户名面膜错误！");
         }
     }
+
 
 }

@@ -307,7 +307,7 @@ Markdown.dialects.Gruber = {
 
       if ( !m ) return undefined;
 
-      var header = [ "header", { level: m[ 1 ].length } ];
+      var header = [ "templates.header", { level: m[ 1 ].length } ];
       Array.prototype.push.apply(header, this.processInline(m[ 2 ]));
 
       if ( m[0].length < block.length )
@@ -322,7 +322,7 @@ Markdown.dialects.Gruber = {
       if ( !m ) return undefined;
 
       var level = ( m[ 2 ] === "=" ) ? 1 : 2;
-      var header = [ "header", { level : level }, m[ 1 ] ];
+      var header = [ "templates.header", { level : level }, m[ 1 ] ];
 
       if ( m[0].length < block.length )
         next.unshift( mk_block( block.substr( m[0].length ), block.trailing, block.lineNumber + 2 ) );
@@ -1468,7 +1468,7 @@ function convert_tree_to_html( tree, references, options ) {
 
   // convert this node
   switch ( jsonml[ 0 ] ) {
-    case "header":
+    case "templates.header":
       jsonml[ 0 ] = "h" + jsonml[ 1 ].level;
       delete jsonml[ 1 ].level;
       break;
