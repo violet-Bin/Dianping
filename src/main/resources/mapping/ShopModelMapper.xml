@@ -252,10 +252,18 @@
     select
     <include refid="Base_Column_List" />
     from shop
-    order by id desc
+    order by id asc
   </select>
 
   <select id="countAllShop" resultType="java.lang.Integer">
     select count(1) from shop;
   </select>
+
+  <select id="recommend" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from shop
+    order by id asc
+  </select>
+
 </mapper>

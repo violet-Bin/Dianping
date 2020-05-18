@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -74,5 +75,15 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public Integer countAllShop() {
         return shopModelMapper.countAllShop();
+    }
+
+    @Override
+    public List<ShopModel> recommend(BigDecimal longitude, BigDecimal latitude) {
+        List<ShopModel> shopModels = shopModelMapper.recommend(longitude, latitude);
+        shopModels.forEach(shopModel -> {
+            shopModel.setCategoryModel(categoryService.get(shopModel.getCategoryId()));
+            shopModel.setSellerModel(sellerService.get(shopModel.getSellerId()));
+        });
+        return shopModels;
     }
 }
