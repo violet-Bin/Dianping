@@ -148,4 +148,8 @@
     from category
     order by sort desc, id asc
   </select>
+
+  <select id="countAllCategory" resultType="java.lang.Integer">
+    select count(1) from category;
+  </select>
 </mapper>

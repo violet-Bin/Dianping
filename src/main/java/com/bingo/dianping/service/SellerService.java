@@ -15,4 +15,6 @@ public interface SellerService {
     SellerModel get(Integer id);
     List<SellerModel> selectAll();
     SellerModel changeStatus();
+
+    Integer countAllSeller();
 }

@@ -47,4 +47,9 @@ public class SellerServiceImpl implements SellerService {
     public SellerModel changeStatus() {
         return null;
     }
+
+    @Override
+    public Integer countAllSeller() {
+        return sellerModelMapper.countAllSeller();
+    }
 }
