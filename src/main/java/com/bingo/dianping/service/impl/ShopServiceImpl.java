@@ -34,7 +34,7 @@ public class ShopServiceImpl implements ShopService {
     @Transactional
     public ShopModel create(ShopModel shopModel) throws BusinessException {
 
-        SellerModel sellerModel = sellerService.get(shopModel.getId());
+        SellerModel sellerModel = sellerService.get(shopModel.getSellerId());
         if (sellerModel == null) {
             throw new BusinessException(ErrorCodeEnum.PARAMETER_VALIDATE_ERROR, "商户不存在");
         }
@@ -52,11 +52,22 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public ShopModel get(Integer id) {
-        return null;
+        ShopModel shopModel = shopModelMapper.selectByPrimaryKey(id);
+        if (shopModel == null) {
+            return null;
+        }
+        shopModel.setCategoryModel(categoryService.get(shopModel.getCategoryId()));
+        shopModel.setSellerModel(sellerService.get(shopModel.getSellerId()));
+        return shopModel;
     }
 
     @Override
     public List<ShopModel> selectAll() {
-        return null;
+        List<ShopModel> shopModels = shopModelMapper.selectAll();
+        shopModels.forEach(shopModel -> {
+            shopModel.setCategoryModel(categoryService.get(shopModel.getCategoryId()));
+            shopModel.setSellerModel(sellerService.get(shopModel.getSellerId()));
+        });
+        return shopModels;
     }
 }
